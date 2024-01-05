@@ -4,3 +4,6 @@ psycopg2
 pytest
 pytest-django
 pylint-django
+djangorestframework
+markdown      
+django-filter 

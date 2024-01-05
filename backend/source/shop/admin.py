@@ -1,6 +1,5 @@
 from django.contrib import admin
-from .models import Product, Cart, Promotion
-# Register your models here.
+from .models import Product, Cart, Promotion, ShopMember, Order
 
 
 class ProductAdmin(admin.ModelAdmin):
@@ -20,3 +19,5 @@ class PromotionAdmin(admin.ModelAdmin):
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Cart, CartAdmin)
 admin.site.register(Promotion, PromotionAdmin)
+admin.site.register(ShopMember)
+admin.site.register(Order)

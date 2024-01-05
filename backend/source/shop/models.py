@@ -37,7 +37,7 @@ class Promotion(models.Model):
         max_digits=10, decimal_places=2)
 
 
-class Order():
+class Order(models.Model):
     customer = models.CharField(max_length=255)
     address = models.TextField()
     total = models.DecimalField(max_digits=10, decimal_places=2)
@@ -48,7 +48,7 @@ class Order():
     promotion = models.ManyToManyField(Promotion)
 
 
-class Member():
+class ShopMember(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     total_order = models.DecimalField(max_digits=10, decimal_places=2)
     order_count = models.IntegerField()
