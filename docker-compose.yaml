@@ -1,0 +1,38 @@
+services:
+    db:
+      container_name: db
+      image: postgres:15.5
+      restart: always
+      environment:
+        POSTGRES_DB: django
+        POSTGRES_USER: root
+        POSTGRES_PASSWORD: dbpass
+      volumes: 
+        - databasestorage:/var/lib/postgresql
+
+    adminer:
+      container_name: adminer
+      image: adminer
+      restart: always
+      ports:
+        - 8000:8000
+
+    django:
+      container_name: django 
+      build:
+          context: backend
+          dockerfile: Dockerfile.Dev
+      ports:
+        - 8080:8080
+      volumes:
+        - .:/app
+      user: 1000:1000
+      command: "python manage.py runserever 0.0.0.0:8080"
+
+
+        
+
+volumes:
+  databasestorage:
+
+    
