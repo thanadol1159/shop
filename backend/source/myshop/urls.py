@@ -22,6 +22,7 @@ from shop.views import CartViewSet as CartViewSer
 from shop.views import PromotionViewSet as PromotionSerializers
 from shop.views import OrderViewSet as OrderSerializers
 from shop.views import ShopMemberViewSet as ShopMemberSerializers
+
 router = routers.DefaultRouter()
 router.register(r'products', ShopProductViewSet)
 router.register(r'carts', CartViewSer)
