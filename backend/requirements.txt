@@ -1,0 +1,6 @@
+Django
+environs
+psycopg2
+pytest
+pytest-django
+pylint-django

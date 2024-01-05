@@ -15,7 +15,7 @@ services:
       image: adminer
       restart: always
       ports:
-        - 8000:8000
+        - 8000:8080
 
     django:
       container_name: django 
@@ -27,7 +27,7 @@ services:
       volumes:
         - .:/app
       user: 1000:1000
-      command: "python manage.py runserever 0.0.0.0:8080"
+      command: "python manage.py runserver 0.0.0.0:8080"
 
 
         
