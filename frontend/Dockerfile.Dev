@@ -1,0 +1,26 @@
+
+FROM node:20 AS build
+WORKDIR /home/node/
+# COPY . . 
+# RUN yarn install
+# RUN yarn build
+
+# FROM node:20 as runner 
+# WORKDIR /home/node/
+# COPY . .
+# COPY --from=build /home/node/.next ./.next 
+# EXPOSE 3000
+
+# FROM node:20
+# COPY --from=build /home/node/next.config.js ./
+# EXPOSE 3000
+# CMD ["yarn", "start"]
+# COPY ./source/package.json /app
+# COPY ./source/app /app
+# COPY ./source/public /public
+# COPY ./source/next.config.js /
+# COPY ./source /usr/src/app/
+# WORKDIR /usr/src/app/source/
+# RUN yarn install
+# RUN yarn build
+# CMD ["yarn", "start"]

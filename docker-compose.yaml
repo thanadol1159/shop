@@ -1,0 +1,76 @@
+services:
+  db:
+    container_name: db
+    image: postgres:15.5
+    environment:
+      POSTGRES_DB: django
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: dbpass
+    volumes:
+      - db:/var/lib/postgresql/data/
+
+  adminer:
+    container_name: adminer
+    image: adminer
+    ports:
+      - 8080:8080
+
+  django:
+    container_name: django
+    build:
+      context: backend
+      dockerfile: Dockerfile.Dev
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/app
+    user: 1000:1000
+    depends_on:
+      - db
+    environment:
+      - SECRET_KEY=django-insecure-ym+seso*a6w)5ujy)2v%(5i&ok0^2_)5t*47okb(!p3$nwrr*#
+      - SQL_ENGINE=django.db.backends.postgresql
+      - SQL_DATABASE=postgres
+      - SQL_USER=root
+      - SQL_PASSWORD=dbpass
+      - SQL_HOST=db
+      - SQL_PORT=5432
+      - DATABASE=postgres
+      - USE_S3=TRUE
+      - AWS_ACCESS_KEY_ID=QvHraEL9iNvRzLhq9bdM
+      - AWS_SECRET_ACCESS_KEY=bVZsMKXqmijCU1Y8NIA7Z9cZO2vasFFICQcuSwQA
+      - AWS_STORAGE_BUCKET_NAME=django
+    command: "python manage.py runserver 0.0.0.0:8000"
+
+  next:
+    container_name: frontend
+    build:
+      context: frontend
+      dockerfile: Dockerfile.Dev
+    ports:
+      - 3000:3000
+    volumes:
+      - ./frontend/source/:/home/node/
+    depends_on:
+      - django
+    user: 1000:1000
+    command: sh -c "yarn install && yarn run dev"
+
+  minio:
+    container_name: minio
+    image: bitnami/minio:latest
+    environment:
+      - MINIO_ROOT_USER=minioadmin
+      - MINIO_ROOT_PASSWORD=minioadmin
+      - MINIO_DEFAULT_BUCKETS=django
+    volumes:
+      - minio_data:/data
+    ports:
+      - 9000:9000
+      - 9001:9001
+
+volumes:
+  db:
+    driver: local
+  minio_data:
+    driver: local

@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Hide the images by default */
+.mySlides {
+  /* display: none; */
+  @apply hidden;
+}

@@ -1,0 +1,7 @@
+[user]
+	email = thanadol.s@opsta.co.th
+	name = thanadol
+[init]
+	devaultBranch = main
+[credential]
+	helper = "!f() { /home/node/.vscode-server/bin/31c37ee8f63491495ac49e43b8544550fbae4533/node /tmp/vscode-remote-containers-5adf8104-9022-4017-ad78-36a965aef689.js git-credential-helper $*; }; f"
